@@ -1,14 +1,12 @@
-import { Flex } from "ingred-ui";
 import styled from "styled-components";
+import { Flex } from "ingred-ui";
 
 export const AccordionTitleContainer = styled(Flex)<{ disabled?: boolean }>`
   background-color: ${({ disabled, theme }) =>
-    // gray...
     disabled ? theme.palette.gray.light : theme.palette.divider};
   cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
   pointer-events: ${({ disabled }) => (disabled ? "none" : "auto")};
   color: ${({ disabled, theme }) =>
-    // gray...
     disabled ? theme.palette.text.disabled : "auto"};
   justify-content: space-between;
 `;
@@ -29,7 +27,6 @@ export const IconButton = styled.div<{ expanded: boolean }>`
   transform: ${({ expanded }) => (expanded ? "rotate(180deg)" : "rotate(0)")};
 `;
 
-// 右よせ
 export const DropdownIndicator = styled.div`
   position: relative;
   display: flex;
@@ -37,4 +34,12 @@ export const DropdownIndicator = styled.div`
   justify-content: flex-end;
   flex: 0 0 auto;
   width: ${({ theme }) => theme.spacing * 5}px;
+`;
+
+export const AccordionContentContainer = styled.div<{ expanded: boolean }>`
+  background-color: ${({ theme }) => theme.palette.divider};
+  height: ${({ expanded }) => (expanded ? "auto" : 0)};
+  padding: ${({ expanded }) => (expanded ? "16px" : "0 16px")};
+  overflow: ${({ expanded }) => (expanded ? "visible" : "hidden")};
+  transition: 0.3s all;
 `;
