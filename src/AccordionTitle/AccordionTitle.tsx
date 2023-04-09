@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { ReactNode, forwardRef } from "react";
 import { Icon } from "ingred-ui";
 import { useAccordion } from "../Accordion";
 import {
@@ -8,27 +8,35 @@ import {
   IconButton,
 } from "./styled";
 
-export const AccordionTitle = ({ children }: { children?: ReactNode }) => {
-  const { expanded, setExpanded, disabled } = useAccordion();
-
-  const handleClickTitle = () => {
-    setExpanded(!expanded);
-  };
-
-  return (
-    <AccordionTitleContainer
-      display="flex"
-      onClick={handleClickTitle}
-      disabled={disabled}
-    >
-      <AccordionTitleChildrenContainer>
-        {children}
-      </AccordionTitleChildrenContainer>
-      <DropdownIndicator>
-        <IconButton expanded={expanded}>
-          <Icon name="arrow_bottom" size="md" color="black" />
-        </IconButton>
-      </DropdownIndicator>
-    </AccordionTitleContainer>
-  );
+type Props = {
+  children: ReactNode;
 };
+
+export const AccordionTitle = forwardRef<HTMLDivElement, Props>(
+  ({ children, ...rest }, ref) => {
+    const { expanded, disabled, onChange } = useAccordion();
+
+    const handleClickTitle = (event: React.SyntheticEvent) => {
+      onChange && onChange(event, !expanded);
+    };
+
+    return (
+      <AccordionTitleContainer
+        ref={ref}
+        display="flex"
+        onClick={handleClickTitle}
+        disabled={disabled}
+        {...rest}
+      >
+        <AccordionTitleChildrenContainer>
+          {children}
+        </AccordionTitleChildrenContainer>
+        <DropdownIndicator>
+          <IconButton expanded={expanded}>
+            <Icon name="arrow_bottom" size="md" color="black" />
+          </IconButton>
+        </DropdownIndicator>
+      </AccordionTitleContainer>
+    );
+  }
+);

@@ -1,13 +1,19 @@
-import { ReactNode } from "react";
+import { ReactNode, forwardRef } from "react";
 import { useAccordion } from "../Accordion";
 import { AccordionContentContainer } from "./styled";
 
-export const AccordionContent = ({ children }: { children?: ReactNode }) => {
-  const { expanded } = useAccordion();
-
-  return (
-    <AccordionContentContainer expanded={expanded}>
-      {children}
-    </AccordionContentContainer>
-  );
+type Props = {
+  children?: ReactNode;
 };
+
+export const AccordionContent = forwardRef<HTMLDivElement, Props>(
+  ({ children, ...rest }, ref) => {
+    const { expanded } = useAccordion();
+
+    return (
+      <AccordionContentContainer ref={ref} expanded={expanded} {...rest}>
+        {children}
+      </AccordionContentContainer>
+    );
+  }
+);

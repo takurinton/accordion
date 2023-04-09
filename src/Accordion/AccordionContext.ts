@@ -3,16 +3,12 @@ import { noop } from "../utils";
 
 type AccordionContextType = {
   expanded: boolean;
-  expandedIcon?: string;
   disabled?: boolean;
-  // これ onChange??
-  setExpanded: (expanded: boolean) => void;
-  onChange?: () => void;
+  onChange?: (event: React.SyntheticEvent, expanded: boolean) => void;
 };
 
 export const AccordionContext = createContext<AccordionContextType>({
   expanded: false,
-  expandedIcon: undefined,
   disabled: false,
-  setExpanded: noop,
+  onChange: noop,
 });
