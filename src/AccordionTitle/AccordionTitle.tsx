@@ -9,14 +9,18 @@ import {
 } from "./styled";
 
 export const AccordionTitle = ({ children }: { children?: ReactNode }) => {
-  const { expanded, setExpanded } = useAccordion();
+  const { expanded, setExpanded, disabled } = useAccordion();
 
   const handleClickTitle = () => {
     setExpanded(!expanded);
   };
 
   return (
-    <AccordionTitleContainer display="flex" onClick={handleClickTitle}>
+    <AccordionTitleContainer
+      display="flex"
+      onClick={handleClickTitle}
+      disabled={disabled}
+    >
       <AccordionTitleChildrenContainer>
         {children}
       </AccordionTitleChildrenContainer>

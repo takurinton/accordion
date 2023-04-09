@@ -1,10 +1,16 @@
 import { Flex } from "ingred-ui";
 import styled from "styled-components";
 
-export const AccordionTitleContainer = styled(Flex)`
-  background-color: ${({ theme }) => theme.palette.divider};
+export const AccordionTitleContainer = styled(Flex)<{ disabled?: boolean }>`
+  background-color: ${({ disabled, theme }) =>
+    // gray...
+    disabled ? theme.palette.gray.light : theme.palette.divider};
+  cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
+  pointer-events: ${({ disabled }) => (disabled ? "none" : "auto")};
+  color: ${({ disabled, theme }) =>
+    // gray...
+    disabled ? theme.palette.text.disabled : "auto"};
   justify-content: space-between;
-  cursor: pointer;
 `;
 
 export const AccordionTitleChildrenContainer = styled.div`
