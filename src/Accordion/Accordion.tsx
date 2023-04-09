@@ -1,7 +1,4 @@
 import { ReactNode, useState } from "react";
-import { AccordionContext } from "./AccordionContext";
-import { AccordionTitle } from "../AccordionTitle";
-import { AccordionContent } from "../AccordionContent";
 import {
   AccordionContentContainer,
   AccordionTitleChildrenContainer,

@@ -1,7 +1,5 @@
-import { Flex, Icon, Spacer, ThemeProvider, createTheme } from "ingred-ui";
+import { Spacer, ThemeProvider, createTheme } from "ingred-ui";
 import { Accordion } from "./Accordion";
-import { AccordionTitle } from "./AccordionTitle";
-import { AccordionContent } from "./AccordionContent";
 
 function App() {
   const theme = createTheme();
